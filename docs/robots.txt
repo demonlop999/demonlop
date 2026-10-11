@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://demonlop999.github.io/demonlop/sitemap.xml
