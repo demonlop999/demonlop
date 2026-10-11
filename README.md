@@ -1,15 +1,15 @@
-# Ultra Gaming Mode 3.3.0
+# Ultra Gaming Mode 3.3.1
 
 Application Android et module Magisk créés par **BarouTech**. L'application reprend le tableau de bord Liquid Glass; le module Magisk fournit les commandes root CPU/GPU et le suivi thermique local.
 
 ## Installation sur le téléphone
 
-1. Téléchargez le paquet prêt à flasher : [UltraGamingMode-v3.3.0.zip](./UltraGamingMode-v3.3.0.zip). Pour le reconstruire depuis les sources, lancez `.\build-module.ps1` (prérequis : JDK 17+, Gradle 8.9+ et Android SDK API 35).
+1. Téléchargez le paquet prêt à flasher : [UltraGamingMode-v3.3.1.zip](./UltraGamingMode-v3.3.1.zip). Pour le reconstruire depuis les sources, lancez `.\build-module.ps1` (prérequis : JDK 17+, Gradle 8.9+ et Android SDK API 35).
 2. Flashez le ZIP dans Magisk et redémarrez.
 3. Au démarrage, le service Magisk installe ou met à jour l'APK embarqué à l'aide de `pm install -r`. L'application **Ultra Gaming Mode** apparaît ensuite dans le lanceur Android. Android n'autorise pas l'auto-lancement de l'écran après installation; ouvrez l'application depuis le lanceur.
 4. Au premier lancement, autorisez l'accès superutilisateur dans Magisk. L'écran de risques et de confidentialité apparaît ensuite; acceptez séparément les deux cases pour accéder au tableau de bord.
 
-L'installation automatique de l'APK dépend de la présence de `app/UltraGamingMode.apk` dans le ZIP construit. Si l'APK manque ou si `pm install` échoue, consultez `/data/adb/ultra-gaming-mode/app-install.log` et reconstruisez le module avec `build-module.ps1`.
+Le ZIP inclut l'entrée d'installation `META-INF/com/google/android/update-binary` requise par Magisk ainsi que `app/UltraGamingMode.apk`. Si l'installation de l'APK au redémarrage échoue, consultez `/data/adb/ultra-gaming-mode/app-install.log`.
 
 ## Module requis
 
@@ -35,7 +35,7 @@ Si le module est désactivé dans Magisk, ses scripts ne tournent pas; l'APK ins
 
 ## Construction et test
 
-`build-module.ps1` construit le bundle WebUI depuis `src/webui.js`, compile l'application Android en APK de développement, l'embarque dans `app/UltraGamingMode.apk`, puis crée l'archive Magisk à côté du dossier du module. Le script restaure les dépendances npm à partir du lockfile si nécessaire. L'APK de développement utilise la signature debug Android : pour distribuer des mises à jour publiques, configurez une clé de signature release privée et pérenne dans le build Android.
+`build-module.ps1` construit le bundle WebUI depuis `src/webui.js`, compile l'application Android en APK de développement, l'embarque dans `app/UltraGamingMode.apk`, puis crée l'archive Magisk dans le dossier du module. Il inclut le chargeur d'installation Magisk, normalise les scripts et `module.prop` en fins de ligne Unix (LF), marque les scripts exécutables et écarte les anciens ZIP de sa propre archive. Le script restaure les dépendances npm à partir du lockfile si nécessaire. L'APK de développement utilise la signature debug Android : pour distribuer des mises à jour publiques, configurez une clé de signature release privée et pérenne dans le build Android.
 
 Le projet Android est dans `android-app/`; son WebView charge les fichiers intégrés via `WebViewAssetLoader` et expose seulement le pont nécessaire aux commandes du module. Les accès CPU/GPU et l'installation doivent être testés sur un appareil Android rooté; les contrôles sur PC ne remplacent pas ce test matériel.
 

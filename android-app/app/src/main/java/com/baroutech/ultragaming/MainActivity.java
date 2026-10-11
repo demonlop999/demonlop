@@ -103,7 +103,7 @@ public final class MainActivity extends Activity {
             message = "L’installation du module semble incomplète. Réinstallez le ZIP Ultra Gaming Mode dans Magisk, redémarrez, puis réessayez.";
             dataNotice += "Les profils existants ne sont pas effacés par cet écran.";
         } else if (result.output.contains("MODULE_MISSING")) {
-            message = "Le module Magisk requis est introuvable. Flashez UltraGamingMode-v3.3.0.zip dans Magisk, redémarrez, puis rouvrez l’application.";
+            message = "Le module Magisk requis est introuvable. Flashez UltraGamingMode-v3.3.1.zip dans Magisk, redémarrez, puis rouvrez l’application.";
             dataNotice += "Si Magisk a déjà désinstallé le module, ses profils peuvent avoir été effacés.";
         } else {
             message = "L’accès superutilisateur n’a pas été accordé ou Magisk n’est pas disponible. Autorisez le root pour Ultra Gaming Mode, puis réessayez.";

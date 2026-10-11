@@ -4,7 +4,7 @@ $moduleRoot = $PSScriptRoot
 $androidProject = Join-Path $moduleRoot "android-app"
 $apkPath = Join-Path $androidProject "app\build\outputs\apk\debug\app-debug.apk"
 $moduleApkPath = Join-Path $moduleRoot "app\UltraGamingMode.apk"
-$archivePath = Join-Path (Split-Path $moduleRoot -Parent) "UltraGamingMode-v3.3.0.zip"
+$archivePath = Join-Path $moduleRoot "UltraGamingMode-v3.3.1.zip"
 
 if (-not (Get-Command npm -ErrorAction SilentlyContinue)) {
     throw "Node.js et npm sont requis pour compiler l'interface WebUI."
@@ -71,16 +71,36 @@ try {
     try {
         Get-ChildItem -LiteralPath $moduleRoot -File -Recurse |
             Where-Object {
-                $_.FullName -notmatch '\\node_modules\\|\\android-app\\\.gradle\\|\\android-app\\app\\build\\|\\\.git\\'
+                ($_.FullName -notmatch '\\node_modules\\|\\android-app\\\.gradle\\|\\android-app\\app\\build\\|\\\.git\\') -and
+                ($_.Name -notmatch '^UltraGamingMode-v[\d.]+\.zip$')
             } |
             ForEach-Object {
                 $relative = [System.IO.Path]::GetRelativePath($moduleRoot, $_.FullName).Replace('\', '/')
-                [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile(
-                    $archive,
-                    $_.FullName,
-                    $relative,
-                    [System.IO.Compression.CompressionLevel]::Optimal
-                ) | Out-Null
+                if ($relative -match '\.sh$|^module\.prop$|^META-INF/com/google/android/(update-binary|updater-script)$') {
+                    $content = [System.IO.File]::ReadAllText($_.FullName) -replace "`r`n?", "`n"
+                    $entry = $archive.CreateEntry($relative, [System.IO.Compression.CompressionLevel]::Optimal)
+                    $writer = [System.IO.StreamWriter]::new(
+                        $entry.Open(),
+                        [System.Text.UTF8Encoding]::new($false)
+                    )
+                    try {
+                        $writer.Write($content)
+                    } finally {
+                        $writer.Dispose()
+                    }
+                } else {
+                    $entry = [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile(
+                        $archive,
+                        $_.FullName,
+                        $relative,
+                        [System.IO.Compression.CompressionLevel]::Optimal
+                    )
+                }
+                $entry.ExternalAttributes = if ($relative -match '\.sh$|^META-INF/com/google/android/update-binary$') {
+                    -2115174400
+                } else {
+                    -2119958528
+                }
             }
     } finally {
         $archive.Dispose()

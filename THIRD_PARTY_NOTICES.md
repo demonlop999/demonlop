@@ -11,3 +11,10 @@ The Android app depends on AndroidX WebKit 1.12.1 for `WebViewAssetLoader`.
 
 Source: https://developer.android.com/jetpack/androidx/releases/webkit
 License: Apache License 2.0
+
+## Magisk module installer
+
+`META-INF/com/google/android/update-binary` follows the official Magisk module installer bootstrap.
+
+Source: https://github.com/topjohnwu/Magisk/blob/master/scripts/module_installer.sh
+License: GNU General Public License v3.0 (see https://github.com/topjohnwu/Magisk/blob/master/LICENSE)
