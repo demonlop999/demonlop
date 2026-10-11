@@ -2,6 +2,8 @@
 
 Application Android et module Magisk créés par **BarouTech**. L'application reprend le tableau de bord Liquid Glass; le module Magisk fournit les commandes root CPU/GPU et le suivi thermique local.
 
+Page web publique : https://demonlop999.github.io/demonlop/
+
 ## Installation sur le téléphone
 
 1. Téléchargez le paquet prêt à flasher : [UltraGamingMode-v3.3.1.zip](./UltraGamingMode-v3.3.1.zip). Pour le reconstruire depuis les sources, lancez `.\build-module.ps1` (prérequis : JDK 17+, Gradle 8.9+ et Android SDK API 35).

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a101a">
+  <meta name="description" content="Ultra Gaming Mode par BarouTech : application Android et module Magisk pour gérer les profils de jeu, les fréquences CPU/GPU et la température.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ultra Gaming Mode — BarouTech">
+  <meta property="og:description" content="Application Android et module Magisk avec profils de jeu, gestion CPU/GPU et protection thermique.">
+  <meta property="og:url" content="https://demonlop999.github.io/demonlop/">
+  <title>Ultra Gaming Mode — BarouTech</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0a101a;--panel:#121d2b;--line:#263348;--text:#f2f6fc;--muted:#a4b1c4;--mint:#9af3d2;--blue:#91baff}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 12% 0%,#164653 0,transparent 34%),radial-gradient(ellipse at 92% 12%,#363562 0,transparent 31%),linear-gradient(145deg,#080e17,#111a2a 58%,#091521);color:var(--text);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+    main{width:min(920px,100%);margin:auto;padding:32px 20px 56px}
+    header{display:flex;align-items:center;gap:13px;margin:20px 0 70px}
+    .logo{display:grid;place-items:center;width:48px;height:48px;border-radius:16px;background:linear-gradient(140deg,var(--mint),#89dfff);color:#0b2024;font-size:22px;font-weight:900}
+    header strong{display:block;letter-spacing:.06em}header span{display:block;color:var(--muted);font-size:13px}
+    .hero{max-width:720px}.eyebrow{color:var(--mint);font-weight:750;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+    h1{margin:12px 0;font-size:clamp(38px,8vw,66px);line-height:1.05;letter-spacing:-.055em}
+    .intro{max-width:620px;color:var(--muted);font-size:18px}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 16px}
+    a.button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:11px 17px;border-radius:13px;border:1px solid var(--line);color:var(--text);text-decoration:none;font-weight:750;background:#ffffff0a}
+    a.button.primary{color:#0a2020;background:linear-gradient(110deg,var(--mint),#89dfff);border-color:transparent}
+    a.button:hover{filter:brightness(1.1)}
+    .note{color:var(--muted);font-size:13px}
+    .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:52px 0 24px}
+    .card{padding:19px;border:1px solid var(--line);border-radius:18px;background:#121d2bd9}
+    .card h2{margin:0 0 8px;font-size:16px}.card p{margin:0;color:var(--muted);font-size:14px}
+    .safety{padding:17px 19px;border:1px solid #9af3d233;border-radius:16px;background:#9af3d20a;color:#cfdae8;font-size:14px}
+    footer{margin-top:32px;color:var(--muted);font-size:13px}
+    footer a{color:var(--mint)}
+    @media(max-width:650px){header{margin:8px 0 52px}.cards{grid-template-columns:1fr;margin-top:36px}.intro{font-size:16px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="logo" aria-hidden="true">B</div>
+      <div><strong>BAROUTECH</strong><span>Application Android · Module Magisk</span></div>
+    </header>
+    <section class="hero" aria-labelledby="title">
+      <div class="eyebrow">Version 3.3.1 · Android root requis</div>
+      <h1 id="title">Ultra Gaming Mode</h1>
+      <p class="intro">Une application Android et un module Magisk pour gérer les profils de jeu, les fréquences CPU/GPU et les réglages compatibles avec ton appareil.</p>
+      <div class="actions">
+        <a class="button primary" href="https://github.com/demonlop999/demonlop/releases/download/v3.3.1/UltraGamingMode-v3.3.1.zip">Télécharger le ZIP Magisk</a>
+        <a class="button" href="https://github.com/demonlop999/demonlop/releases/download/v3.3.1/UltraGamingMode.apk">Télécharger l’APK</a>
+      </div>
+      <p class="note">Pour les téléphones Android rootés. Flashe le ZIP avec Magisk puis redémarre l’appareil.</p>
+    </section>
+    <section class="cards" aria-label="Fonctionnalités">
+      <article class="card"><h2>Profils de jeu</h2><p>Associe les jeux installés à leurs réglages et scripts locaux.</p></article>
+      <article class="card"><h2>Contrôle matériel</h2><p>Gère les fréquences selon les possibilités réellement exposées par le noyau.</p></article>
+      <article class="card"><h2>Limites thermiques</h2><p>Les protections thermiques Android et du noyau restent actives.</p></article>
+    </section>
+    <aside class="safety"><strong>À savoir :</strong> le root et les modifications de performances comportent des risques. Vérifie la compatibilité de ton appareil et lis les instructions avant l’installation. Le tableau de bord de gestion fonctionne dans l’application Android; cette page web sert à présenter et télécharger le projet.</aside>
+    <footer>
+      Créé par BarouTech ·
+      <a href="https://github.com/demonlop999/demonlop">Code source</a> ·
+      <a href="https://github.com/demonlop999/demonlop/releases/tag/v3.3.1">Notes et fichiers de la release</a> ·
+      <a href="https://github.com/demonlop999/demonlop/blob/main/README.md">Installation et confidentialité</a>
+    </footer>
+  </main>
+</body>
+</html>
