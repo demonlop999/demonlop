@@ -1,0 +1,6 @@
+node_modules/
+/app/UltraGamingMode.apk
+/android-app/.gradle/
+/android-app/app/build/
+/android-app/local.properties
+.gradle/

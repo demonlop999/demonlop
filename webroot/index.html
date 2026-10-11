@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0b111d">
+  <title>BarouTech · Ultra Gaming</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0a101a;--panel:rgba(20,29,44,.73);--line:rgba(220,235,255,.1);--text:#f2f6fc;--muted:#a4b1c4;--mint:#9af3d2;--blue:#91baff;--cyan:#89dfff;--amber:#ffd58d;--red:#ff9eae;--shadow:0 16px 48px #02050a70}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 8% 0%,#164653 0,transparent 32%),radial-gradient(ellipse at 92% 12%,#363562 0,transparent 31%),linear-gradient(145deg,#080e17,#111a2a 58%,#091521);color:var(--text);font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,sans-serif}
+    button,input,select{font:inherit}button{cursor:pointer;color:inherit}button:disabled,input:disabled,select:disabled{opacity:.45;cursor:not-allowed}
+    .app{max-width:1440px;margin:auto;padding:20px;display:grid;grid-template-columns:236px minmax(0,1fr);gap:20px;min-height:100vh}
+    .sidebar{position:sticky;top:20px;height:calc(100vh - 40px);min-height:540px;padding:20px 13px;display:flex;flex-direction:column}
+    .glass{background:var(--panel);border:1px solid var(--line);border-radius:23px;box-shadow:var(--shadow),inset 0 1px #ffffff0a;backdrop-filter:blur(16px) saturate(135%);-webkit-backdrop-filter:blur(16px) saturate(135%)}
+    .brand{display:flex;align-items:center;gap:11px;padding:5px 7px 24px}.brand-mark{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(140deg,#9af3d2,#89dfff);color:#0b2024;font-weight:950;font-size:18px;box-shadow:0 5px 25px #7ff5d52c}.brand strong{display:block;font-size:14px;letter-spacing:.01em}.brand small{color:var(--muted);font-size:11px}
+    .nav-label{padding:10px 11px 5px;color:#738097;text-transform:uppercase;font-size:10px;letter-spacing:.15em;font-weight:800}.nav{display:grid;gap:5px}.nav button{width:100%;border:1px solid transparent;border-radius:13px;background:transparent;text-align:left;padding:10px 12px;color:#aab6c8;display:flex;align-items:center;gap:11px;font-weight:650;transition:background .18s,color .18s,border-color .18s}.nav button:hover{background:#ffffff09;color:var(--text)}.nav button.active{background:linear-gradient(110deg,#9af3d21a,#91baff12);border-color:#9af3d226;color:var(--mint)}.nav .icon{width:18px;text-align:center;font-size:16px}
+    .sidebar-bottom{margin-top:auto}.consent-state{border:1px solid var(--line);border-radius:14px;padding:11px;margin:12px 2px;color:var(--muted);font-size:11px}.consent-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--amber);margin-right:7px}.consent-dot.on{background:var(--mint);box-shadow:0 0 10px #9af3d280}
+    .main{min-width:0;padding:0 2px 28px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 4px 20px}.breadcrumbs{color:var(--muted);font-size:12px}.top-actions{display:flex;align-items:center;gap:9px}.chip{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid var(--line);border-radius:99px;background:#ffffff08;color:var(--muted);font-size:11px}.avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#10221f;font-weight:850;background:linear-gradient(145deg,var(--mint),var(--blue))}
+    .page{display:none;animation:enter .22s ease}.page.active{display:block}@keyframes enter{from{opacity:.3;transform:translateY(4px)}to{opacity:1;transform:none}}
+    .page-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin:0 3px 18px}.eyebrow{color:var(--mint);text-transform:uppercase;letter-spacing:.18em;font-size:10px;font-weight:850}.page-heading h1{font-size:clamp(25px,4vw,34px);letter-spacing:-.04em;line-height:1.1;margin:5px 0}.page-heading p{color:var(--muted);margin:0;max-width:660px}.live{color:var(--muted);font-size:11px;white-space:nowrap}.live i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--mint);margin-right:6px;box-shadow:0 0 12px #9af3d2}
+    .grid{display:grid;gap:14px}.stats{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:14px}.stat{padding:17px 18px;min-height:116px}.stat-label{font-size:11px;color:var(--muted);display:flex;justify-content:space-between;gap:8px}.stat-icon{color:var(--mint);font-size:16px}.stat-value{font-size:27px;font-weight:770;letter-spacing:-.045em;margin:11px 0 1px;font-variant-numeric:tabular-nums}.stat-foot{font-size:10px;color:#8997ac}.dashboard-grid{grid-template-columns:minmax(0,1.5fr) minmax(260px,.85fr);align-items:stretch}.card{padding:19px;margin-bottom:14px}.card-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.card-heading h2,.card h2{font-size:14px;margin:0;letter-spacing:-.01em}.card-heading p{color:var(--muted);font-size:11px;margin:3px 0 0}.subtle{color:var(--muted);font-size:11px}.chart-wrap{height:190px;position:relative}.chart-wrap canvas{width:100%;height:100%;display:block}.chart-labels{display:flex;justify-content:space-between;color:#748198;font-size:10px;margin-top:7px}.profile-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.profile{min-height:86px;border:1px solid var(--line);border-radius:16px;background:#ffffff06;padding:13px;text-align:left;font-weight:700;transition:.18s}.profile:hover{transform:translateY(-2px);border-color:#9af3d244}.profile.active{border-color:#9af3d276;background:linear-gradient(135deg,#9af3d222,#91baff15);box-shadow:inset 0 0 24px #9af3d20c}.profile-icon{font-size:18px;display:block;margin-bottom:6px}.profile small{display:block;color:var(--muted);font-weight:500;font-size:10px;margin-top:2px}.notice{padding:12px 14px;border:1px solid #ffd58d23;border-radius:13px;background:#ffd58d09;color:#cfbd9a;font-size:11px;margin-top:13px}.meter{height:6px;border-radius:9px;background:#ffffff12;overflow:hidden;margin-top:9px}.meter span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--mint),var(--blue));transition:width .4s}
+    .section-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.field{margin:14px 0}.field label{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:7px;color:#c2cede;font-size:12px}.field input[type=text],.field select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#09111c;color:var(--text);outline:none}.field input[type=text]:focus,.field select:focus{border-color:#9af3d266;box-shadow:0 0 0 3px #9af3d212}input[type=range]{width:100%;accent-color:var(--mint)}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}.primary,.secondary,.danger-button{border-radius:12px;padding:10px 14px;font-weight:750;border:1px solid transparent;transition:transform .15s,filter .15s}.primary{background:linear-gradient(110deg,var(--mint),var(--cyan));color:#0a2020}.secondary{border-color:var(--line);background:#ffffff09;color:var(--text)}.danger-button{border-color:#ff9eae30;background:#ff9eae0c;color:var(--red)}.primary:hover,.secondary:hover,.danger-button:hover{filter:brightness(1.12);transform:translateY(-1px)}
+    .rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px}.row{min-width:0;display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:12px}.row span{color:var(--muted);overflow-wrap:anywhere}.row strong{text-align:right;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}.temp{color:var(--amber)!important}.empty{color:var(--muted);padding:15px 0;font-size:12px}.danger{color:var(--red)}.note{font-size:11px;color:var(--muted);line-height:1.6}.game-list{display:grid;gap:9px}.game{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;padding:13px;border:1px solid var(--line);border-radius:15px;background:#ffffff05}.game strong{display:block;font-size:12px}.game small{display:block;color:var(--muted);font-size:10px;overflow-wrap:anywhere}.game-actions{display:flex;gap:6px}.game-actions button{padding:7px 9px;font-size:10px}
+    .consent-card{border-color:#ffd58d38;background:linear-gradient(145deg,#3028187d,#142033b8)}.consent-card[hidden]{display:none}.legal{font-size:12px;color:#bcc7d6;line-height:1.7}.consent-check{display:flex;gap:10px;align-items:flex-start;margin:12px 0;color:#dce5ef;font-size:11px}.consent-check input{margin-top:3px;accent-color:var(--mint)}code{font-size:.9em;color:var(--cyan);overflow-wrap:anywhere}.footer{text-align:center;color:#718097;font-size:10px;padding:18px}
+    .entry-screen{min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:20px}.entry-card{width:min(660px,100%);padding:clamp(20px,5vw,38px)}.entry-brand{display:flex;align-items:center;gap:12px;margin-bottom:20px}.entry-brand .brand-mark{width:46px;height:46px}.entry-brand small{display:block;color:var(--muted);font-size:11px}.entry-card h1{font-size:clamp(25px,5vw,34px);line-height:1.15;letter-spacing:-.04em;margin:5px 0 14px}.entry-card .actions{margin-top:20px}.entry-screen[hidden],.app[hidden]{display:none}
+    @media(max-width:1080px){.app{grid-template-columns:205px minmax(0,1fr);gap:14px;padding:14px}.stats{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:760px){.app{display:block;padding:10px}.sidebar{position:static;height:auto;min-height:0;padding:9px 10px;margin-bottom:13px}.brand{padding:4px 6px 10px}.sidebar .nav-label,.sidebar-bottom{display:none}.nav{display:flex;overflow-x:auto;gap:5px;padding-bottom:2px}.nav button{white-space:nowrap;width:auto;flex:0 0 auto;padding:8px 10px}.nav button span:last-child{font-size:11px}.main{padding:0 2px}.topbar{padding:7px 3px 14px}.dashboard-grid{grid-template-columns:1fr}.stats{gap:9px}.stat{min-height:104px;padding:14px}.stat-value{font-size:24px}.page-heading{align-items:flex-start}.section-grid{grid-template-columns:1fr}}
+    @media(max-width:460px){.app{padding:8px}.nav button{padding:8px}.nav .icon{width:auto}.nav button span:last-child{font-size:10px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat-value{font-size:21px}.page-heading{display:block}.live{display:inline-block;margin-top:9px}.profile-grid{grid-template-columns:1fr}.profile{min-height:unset}.profile-icon{display:inline-block;margin:0 8px 0 0}.profile small{display:inline;margin-left:4px}.rows{grid-template-columns:1fr}.two{grid-template-columns:1fr}.game{grid-template-columns:1fr}.game-actions{justify-content:flex-end}}
+    .app{display:block;max-width:1280px;padding-bottom:calc(108px + env(safe-area-inset-bottom))}
+    .sidebar{position:static;height:auto;min-height:0;padding:10px 0;margin:0 0 12px;background:transparent;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+    .brand{padding:4px 4px 10px}
+    .sidebar .nav-label,.sidebar-bottom{display:none}
+    .nav{position:fixed;z-index:20;left:50%;bottom:calc(12px + env(safe-area-inset-bottom));transform:translateX(-50%);width:min(420px,calc(100vw - 28px));display:flex;justify-content:space-around;gap:7px;padding:8px;background:rgba(13,21,33,.9);border:1px solid var(--line);border-radius:23px;box-shadow:var(--shadow),inset 0 1px #ffffff0a;backdrop-filter:blur(16px) saturate(135%);-webkit-backdrop-filter:blur(16px) saturate(135%)}
+    .nav button{width:54px;height:50px;flex:0 0 54px;justify-content:center;padding:0;border-radius:15px}
+    .nav button span:last-child{display:none}
+    .nav .icon{width:auto;font-size:21px;line-height:1}
+    .main{max-width:1180px;margin:0 auto}
+    .field input[type=number]{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#09111c;color:var(--text);outline:none;font-variant-numeric:tabular-nums}
+    .field input[type=number]:focus{border-color:#9af3d266;box-shadow:0 0 0 3px #9af3d212}
+    .app-picker{display:flex;gap:9px;align-items:center}
+    .app-picker select{min-width:0;flex:1;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:#09111c;color:var(--text)}
+    .mhz-inputs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .mhz-inputs.single{grid-template-columns:minmax(0,1fr)}
+    .mhz-inputs .field{min-width:0}
+    @media(max-width:760px){.app{display:block;padding:8px 8px calc(100px + env(safe-area-inset-bottom))}.sidebar{position:static;height:auto;min-height:0;padding:7px 2px;margin:0 0 8px}.sidebar .nav-label,.sidebar-bottom{display:none}.nav{position:fixed;bottom:calc(10px + env(safe-area-inset-bottom));width:min(390px,calc(100vw - 24px));justify-content:space-evenly}.nav button{white-space:normal;width:52px;flex:0 0 52px;padding:0}.nav button span:last-child{display:none}.nav .icon{width:auto}.main{padding:0 2px}.topbar{padding:7px 3px 14px}.dashboard-grid{grid-template-columns:1fr}.section-grid{grid-template-columns:1fr}}
+    @media(max-width:460px){.app{padding:6px 6px calc(96px + env(safe-area-inset-bottom))}.nav{padding:7px;gap:3px}.nav button{width:48px;height:48px;flex-basis:48px}.nav .icon{font-size:20px}.mhz-inputs{gap:9px}.app-picker{align-items:stretch;flex-direction:column}}
+    @media(max-width:760px){.glass,.nav{backdrop-filter:blur(8px) saturate(115%);-webkit-backdrop-filter:blur(8px) saturate(115%)}}
+    @media(prefers-reduced-transparency:reduce){.glass,.nav{backdrop-filter:none;-webkit-backdrop-filter:none;background:#141d2c}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+<main id="consentScreen" class="entry-screen">
+  <section class="glass consent-card entry-card" aria-labelledby="consent-title">
+    <div class="entry-brand"><div class="brand-mark">B</div><div><strong>BAROUTECH</strong><small>ULTRA GAMING · 3.3.0</small></div></div>
+    <div class="eyebrow">Écran de démarrage · activation sécurisée</div>
+    <h1 id="consent-title">Avant d’ouvrir votre centre de gestion</h1>
+    <p class="legal">Les commandes CPU/GPU disponibles dépendent du noyau. Les réglages peuvent augmenter la chauffe, la consommation ou l’instabilité. Les fréquences restent limitées à celles publiées par le noyau. Les capteurs et protections thermiques Android ne sont jamais désactivés.</p>
+    <p class="legal"><strong>Confidentialité :</strong> aucune télémétrie ni transmission réseau. Les informations système et la liste des applications ne sont consultées qu’après votre accord. Le profil du jeu au premier plan est vérifié localement toutes les 10 secondes. Profils et consentement restent dans <code>/data/adb/ultra-gaming-mode</code>. Un script personnalisé autorisé en root peut avoir ses propres effets, notamment réseau.</p>
+    <label class="consent-check"><input id="risk" type="checkbox"><span>J’ai lu les risques et j’accepte l’application locale des réglages que je sélectionne.</span></label>
+    <label class="consent-check"><input id="privacyAccept" type="checkbox"><span>J’ai lu et j’accepte la politique de confidentialité locale.</span></label>
+    <div class="actions"><button id="accept" class="primary" type="button">Accepter et ouvrir</button><button id="decline" class="secondary" type="button">Refuser et quitter</button></div>
+    <p id="consentMessage" role="status" aria-live="polite" class="footer">Votre choix est nécessaire pour ouvrir le tableau de bord.</p>
+  </section>
+</main>
+<div class="app" id="dashboard" hidden>
+  <aside class="sidebar glass">
+    <div class="brand"><div class="brand-mark">B</div><div><strong>BAROUTECH</strong><small>ULTRA GAMING · 3.3.0</small></div></div>
+    <nav class="nav" aria-label="Navigation principale">
+      <button class="active" data-page-target="overview" aria-label="Accueil" title="Accueil"><span class="icon" aria-hidden="true">⌂</span><span>Accueil</span></button>
+      <button data-page-target="gamesPage" aria-label="Jeux" title="Jeux"><span class="icon" aria-hidden="true">▣</span><span>Jeux</span></button>
+      <button data-page-target="performancePage" aria-label="Performances" title="Performances"><span class="icon" aria-hidden="true">◈</span><span>Performances</span></button>
+      <button data-page-target="devicePage" aria-label="Appareil" title="Appareil"><span class="icon" aria-hidden="true">▤</span><span>Appareil</span></button>
+      <button data-page-target="privacyPage" aria-label="Paramètres" title="Paramètres"><span class="icon" aria-hidden="true">⚙</span><span>Paramètres</span></button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="nav-label">Sécurité</div>
+      <div class="consent-state"><span id="consentDot" class="consent-dot"></span><span id="consentLabel">Consentement requis</span><div style="margin-top:5px">Le contrôle thermique Android reste actif.</div></div>
+      <div class="brand" style="padding:6px"><div><strong style="font-size:11px">Créé par BarouTech</strong><small>Local · sans télémétrie</small></div></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div class="breadcrumbs">BarouTech <span aria-hidden="true">/</span> <span id="crumb">Vue générale</span></div>
+      <div class="top-actions"><button id="refresh" class="secondary" type="button">Actualiser</button><span class="chip"><i class="live"><i></i></i>LOCAL</span><span class="avatar" aria-label="BarouTech">B</span></div>
+    </div>
+
+    <section class="page active" id="overview" aria-labelledby="overview-title">
+      <header class="page-heading"><div><div class="eyebrow">Centre de contrôle</div><h1 id="overview-title">Vue générale</h1><p>État du téléphone et profil de performance, actualisés depuis les informations disponibles localement.</p></div><span class="live"><i></i>Surveillance active</span></header>
+      <div class="grid stats">
+        <article class="glass stat"><div class="stat-label">Profil actif <span class="stat-icon">◈</span></div><div id="statProfile" class="stat-value">Origine</div><div class="stat-foot">Gestion du processeur</div></article>
+        <article class="glass stat"><div class="stat-label">Température max. <span class="stat-icon">⌁</span></div><div id="statTemp" class="stat-value">—°</div><div id="statThermalFoot" class="stat-foot">Capteurs accessibles</div></article>
+        <article class="glass stat"><div class="stat-label">Batterie <span class="stat-icon">▰</span></div><div id="statBattery" class="stat-value">—%</div><div id="statBatteryFoot" class="stat-foot">État de charge</div></article>
+        <article class="glass stat"><div class="stat-label">Mémoire utilisée <span class="stat-icon">▦</span></div><div id="statMemory" class="stat-value">—%</div><div id="statMemoryFoot" class="stat-foot">RAM système</div><div class="meter"><span id="memoryMeter" style="width:0"></span></div></article>
+      </div>
+      <div class="grid dashboard-grid">
+        <div>
+          <section class="glass card"><div class="card-heading"><div><h2>Température & tendance</h2><p>Dernières mesures des capteurs thermiques accessibles</p></div><span class="chip" id="sampleCount">0 mesures</span></div><div class="chart-wrap"><canvas id="thermalChart" aria-label="Graphique des températures relevées"></canvas></div><div class="chart-labels"><span>Ancien</span><span>Maintenant</span></div></section>
+          <section class="glass card"><div class="card-heading"><div><h2>Profil système</h2><p>Un seul profil actif à la fois</p></div><span class="chip" id="profileChip">Origine</span></div><div class="profile-grid"><button class="profile" data-profile="stock"><span class="profile-icon">◉</span>Origine<small>Valeurs sauvegardées</small></button><button class="profile" data-profile="balanced"><span class="profile-icon">◒</span>Équilibré<small>Plafond adaptatif · 80 %</small></button><button class="profile" data-profile="gaming"><span class="profile-icon">⚡</span>Jeu<small>Jusqu'à la limite du noyau</small></button></div><div class="notice">Le throttling matériel reste prioritaire. En mode Jeu, le module passe temporairement à Équilibré dès 75 °C et reprend sous 68 °C.</div></section>
+        </div>
+        <div>
+          <section class="glass card"><div class="card-heading"><div><h2>Activité CPU & GPU</h2><p>Gouverneurs et fréquences instantanées</p></div><button class="secondary" data-go="performancePage" type="button">Détails</button></div><div class="rows" id="quickHardware"></div></section>
+          <section class="glass card"><div class="card-heading"><div><h2>Jeux configurés</h2><p>Profils associés aux paquets installés</p></div><button class="secondary" data-go="gamesPage" type="button">Gérer</button></div><div id="gameSummary" class="empty">Chargement des profils…</div></section>
+          <section class="glass card"><div class="card-heading"><div><h2>Stockage appareil</h2><p>Partition de données Android</p></div><span class="stat-icon">▤</span></div><div id="storageSummary" class="stat-value">—</div><div id="storageFoot" class="stat-foot">Espace utilisé sur /data</div><div class="meter"><span id="storageMeter" style="width:0"></span></div></section>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="gamesPage" aria-labelledby="games-title">
+      <header class="page-heading"><div><div class="eyebrow">Profils automatiques</div><h1 id="games-title">Mes jeux</h1><p>Sélectionnez une application déjà installée. Son nom de paquet est rempli automatiquement; le lancement et le retour sont détectés localement.</p></div></header>
+      <div class="grid dashboard-grid">
+        <section class="glass card"><div class="card-heading"><div><h2>Bibliothèque de profils</h2><p>Associez un profil à une application installée sur ce téléphone.</p></div><span id="gameCount" class="chip">0 jeu</span></div><div id="games" class="game-list"><p class="empty">Chargement…</p></div></section>
+        <section class="glass card controls"><div class="card-heading"><div><h2 id="gameFormTitle">Nouveau profil de jeu</h2><p>Les fréquences disponibles et unités sont détectées depuis le noyau.</p></div></div>
+          <div class="field"><label for="gameName">Nom affiché</label><input id="gameName" type="text" maxlength="48" placeholder="Mon jeu"></div>
+          <div class="field"><label for="installedApps">Sélectionner une application installée</label><div class="app-picker"><select id="installedApps"><option value="">Chargement des applications…</option></select><button id="refreshApps" class="secondary" type="button">Actualiser</button></div></div>
+          <div class="field"><label for="gamePackage">Nom du paquet Android</label><input id="gamePackage" type="text" maxlength="160" placeholder="com.exemple.jeu" autocapitalize="none" spellcheck="false" readonly></div>
+          <div class="mhz-inputs"><div class="field"><label for="gameMin">CPU minimum (MHz)</label><input id="gameMin" type="number" min="1" step="1"></div><div class="field"><label for="gameMax">CPU maximum (MHz)</label><input id="gameMax" type="number" min="1" step="1"></div></div>
+          <div class="mhz-inputs single"><div class="field"><label for="gameGpu">GPU maximum (MHz)</label><input id="gameGpu" type="number" min="1" step="1"></div></div>
+          <div class="two"><div class="field"><label for="startAction">Au lancement</label><select id="startAction"><option value="gaming">Profil Jeu</option><option value="balanced">Profil Équilibré</option><option value="none">Garder les limites choisies</option></select></div><div class="field"><label for="stopAction">À la sortie</label><select id="stopAction"><option value="balanced">Revenir à Équilibré</option><option value="stock">Restaurer Origine</option><option value="none">Ne rien changer</option></select></div></div>
+          <div class="field"><label for="gameScript">Script local facultatif</label><input id="gameScript" type="text" maxlength="48" placeholder="identifiant sans .sh" autocapitalize="none" spellcheck="false"><p class="note">Le fichier <code>game-scripts/identifiant.sh</code> doit exister et être vérifié par vous. Il s’exécutera en root à la détection du jeu.</p></div>
+          <label class="consent-check"><input id="allowScripts" type="checkbox"><span>J’autorise les scripts associés en root. Autorisation distincte et désactivable.</span></label>
+          <div class="actions"><button id="saveScriptConsent" class="secondary" type="button">Enregistrer l’autorisation</button><button id="saveGame" class="primary" type="button">Enregistrer le profil</button><button id="cancelEdit" class="secondary" type="button" hidden>Annuler</button></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="page" id="performancePage" aria-labelledby="performance-title">
+      <header class="page-heading"><div><div class="eyebrow">Réglages détaillés</div><h1 id="performance-title">Performances</h1><p>Fréquences observées et limites configurables dans l’intervalle autorisé par le noyau.</p></div></header>
+      <div class="grid section-grid">
+        <section class="glass card"><div class="card-heading"><div><h2>Processeur · CPU</h2><p>Fréquence actuelle et plages signalées</p></div></div><div id="cpuDetails"></div></section>
+        <section class="glass card"><div class="card-heading"><div><h2>Graphique · GPU</h2><p>Gouverneur, fréquence et limites disponibles</p></div></div><div id="gpuDetails"></div></section>
+      </div>
+      <section class="glass card controls"><div class="card-heading"><div><h2>Limites manuelles en MHz</h2><p>Les valeurs sont arrondies aux fréquences acceptées par le noyau.</p></div><span id="frequencyRange" class="chip">Plage CPU/GPU détectée</span></div>
+        <div class="mhz-inputs"><div class="field"><label for="cpuMin">CPU minimum (MHz)</label><input id="cpuMin" type="number" min="1" step="1"></div><div class="field"><label for="cpuMax">CPU maximum (MHz)</label><input id="cpuMax" type="number" min="1" step="1"></div></div>
+        <div class="mhz-inputs single"><div class="field"><label for="gpuMax">GPU maximum (MHz)</label><input id="gpuMax" type="number" min="1" step="1"></div></div>
+        <button id="applyLimits" class="primary" type="button">Appliquer les fréquences</button><p class="note">Seules les fréquences exposées et modifiables par ce noyau peuvent être appliquées. Les valeurs restent limitées à la plage d'origine sauvegardée.</p>
+      </section>
+    </section>
+
+    <section class="page" id="devicePage" aria-labelledby="device-title">
+      <header class="page-heading"><div><div class="eyebrow">Informations locales</div><h1 id="device-title">Appareil</h1><p>Informations de base, batterie, mémoire et réseau lues localement; aucun identifiant personnel n’est collecté.</p></div></header>
+      <div class="grid section-grid">
+        <section class="glass card"><div class="card-heading"><div><h2>Configuration système</h2><p>Version et charge de l'appareil</p></div></div><div id="deviceDetails" class="rows"></div></section>
+        <section class="glass card"><div class="card-heading"><div><h2>Batterie & mémoire</h2><p>Mesures exposées par Android</p></div></div><div id="batteryDetails"></div></section>
+        <section class="glass card"><div class="card-heading"><div><h2>Stockage</h2><p>Partition /data</p></div></div><div id="storageDetails"></div></section>
+        <section class="glass card"><div class="card-heading"><div><h2>Trafic réseau</h2><p>Compteurs cumulés locaux par interface</p></div></div><div id="networkDetails"></div><p class="note">Ce sont des compteurs du noyau depuis le démarrage, pas une mesure de débit internet. Aucun trafic réseau n'est envoyé par le module.</p></section>
+      </div>
+    </section>
+
+    <section class="page" id="privacyPage" aria-labelledby="privacy-title">
+      <header class="page-heading"><div><div class="eyebrow">Transparence & contrôle</div><h1 id="privacy-title">Paramètres</h1><p>Confidentialité, consentement, autorisation des scripts et informations sur le module.</p></div></header>
+      <section class="glass card"><div class="card-heading"><div><h2>Politique de confidentialité</h2><p>Pas de compte, d'analytics ou de connexion réseau.</p></div><span class="chip">Traitement local</span></div>
+        <p class="legal">Ultra Gaming Mode n’envoie aucune information à BarouTech ni à un tiers. La WebUI lit uniquement les informations nécessaires à l’affichage des mesures système. L'application au premier plan est comparée localement aux jeux que vous avez configurés. Le nom du jeu, son paquet, vos paramètres, le consentement et la sauvegarde des gouverneurs résident dans <code>/data/adb/ultra-gaming-mode</code>.</p>
+        <p class="legal">Les scripts shell ajoutés par l'utilisateur disposent du contexte root et peuvent eux-mêmes accéder aux fichiers ou au réseau. Le module ne les fournit pas et ne peut pas garantir leur comportement : relisez-les avant toute autorisation.</p>
+        <p class="legal">Le retrait du consentement stoppe la surveillance et tente de restaurer les valeurs système sauvegardées. La désinstallation essaie également de les restaurer avant d'effacer les données locales.</p>
+        <div class="actions"><button id="privacyToggle" class="secondary" type="button">Afficher le détail des risques</button><button id="revokePrivacy" class="danger-button" type="button">Retirer le consentement et restaurer</button></div><p id="riskDetails" class="legal" hidden>Les fréquences et seuils disponibles varient selon le constructeur, le SoC, le pilote et le noyau. Un paramètre accepté par sysfs ne garantit pas un gain de performance et peut affecter autonomie, chauffe ou stabilité. Le module ne supprime pas le throttling thermique Android, ne simule pas les températures et ne modifie pas le launcher, les icônes ou les applications.</p>
+      </section>
+      <section class="glass card"><div class="card-heading"><div><h2>Scripts locaux en root</h2><p>Autorisation indépendante pour les profils de jeu.</p></div><span id="scriptStatus" class="chip">Désactivés</span></div>
+        <label class="consent-check"><input id="allowScriptsPrivacy" type="checkbox"><span>Autoriser uniquement les scripts que j'associe explicitement à mes profils de jeu.</span></label>
+        <button id="saveScriptsPrivacy" class="secondary" type="button">Enregistrer ce choix</button>
+      </section>
+      <section class="glass card"><div class="card-heading"><div><h2>À propos</h2><p>Ultra Gaming Mode · version 3.3.0</p></div><span class="avatar">B</span></div><p>Créateur : <strong>BarouTech</strong></p><p class="note">Le root Android n'offre pas à cette application un droit universel sur le launcher. Les packs d'icônes, thèmes, écran d'accueil et applications demeurent gérés par Android et le launcher installé.</p></section>
+    </section>
+    <div id="message" role="status" aria-live="polite" class="footer">Prêt · contrôles thermiques Android préservés.</div>
+  </main>
+</div>
+<script type="module" src="./app.js"></script>
+</body>
+</html>

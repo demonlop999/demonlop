@@ -1,0 +1,32 @@
+plugins {
+    id "com.android.application"
+}
+
+android {
+    namespace "com.baroutech.ultragaming"
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "com.baroutech.ultragaming"
+        minSdk 26
+        targetSdk 35
+        versionCode 330
+        versionName "3.3.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    sourceSets {
+        main {
+            assets.srcDirs += ["../../webroot"]
+        }
+    }
+}
+
+dependencies {
+    implementation "androidx.webkit:webkit:1.12.1"
+}

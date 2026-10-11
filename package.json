@@ -1,0 +1,13 @@
+{
+  "name": "ultra-gaming-mode-webui",
+  "private": true,
+  "scripts": {
+    "build": "esbuild src/webui.js --bundle --minify --format=esm --outfile=webroot/app.js"
+  },
+  "dependencies": {
+    "kernelsu": "3.0.2"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.5"
+  }
+}
